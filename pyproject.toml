@@ -1,0 +1,16 @@
+[project]
+name = "SM-Legal-Contract"
+version = "2.0.0"
+description = "合同管理系统：合同、签约方、里程碑、到期提醒与归档"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 200
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

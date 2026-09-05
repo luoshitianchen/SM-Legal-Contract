@@ -12,7 +12,7 @@ from pydantic import BaseModel, Field
 from app import base
 
 SERVICE = "sm-legal-contract"
-VERSION = "2.0.0"
+VERSION = "3.0.0"
 NAME = "SM Legal Contract"
 DESCRIPTION = "合同管理：合同登记、版本管理、审批与到期预警"
 PORT = 8540

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sm-legal-contract
+  namespace: sm
+  labels:
+    app: sm-legal-contract
+    platform: sm-suite
+spec:
+  type: ClusterIP
+  selector:
+    app: sm-legal-contract
+  ports:
+  - name: http
+    port: 8540
+    targetPort: http
+    protocol: TCP

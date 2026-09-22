@@ -1,0 +1,37 @@
+# ArgoCD Application: sm-legal-contract（GitOps 持续交付）
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sm-legal-contract
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: sm-legal-contract
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: sm-platform
+  source:
+    repoURL: https://github.com/luoshitianchen/sm-legal-contract.git
+    targetRevision: HEAD
+    path: helm/sm-legal-contract
+    helm:
+      valueFiles:
+        - values.yaml
+        - values-prod.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sm-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
